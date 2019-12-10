@@ -19,6 +19,11 @@ canvas.width = (CELL_SIZE + 1) * width + 1;
 
 const ctx = canvas.getContext('2d');
 
+function sleepFor( sleepDuration ){
+  var now = new Date().getTime();
+  while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
+}
+
 const fps = new class {
   constructor() {
     this.fps = document.getElementById("fps");
@@ -74,6 +79,7 @@ const renderLoop = () => {
     universe.tick();
   }
 
+  sleepFor(1000);
   animationId = requestAnimationFrame(renderLoop);
 };
 
